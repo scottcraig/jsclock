@@ -238,7 +238,6 @@ window.setInterval(updateDadJoke, 3*60*1000);
     var run = function () {
         if (countdown > 0){
             countdown -= 1;
-			window.requestAnimationFrame(run);
         }
         else {
             countdown = 4;
@@ -250,7 +249,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
               t = t + 0.03;
               if (t > topT) t -= topT;
         }
-      
+    window.requestAnimationFrame(run);  
     };
     run();
 })();
