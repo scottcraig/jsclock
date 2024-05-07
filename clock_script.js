@@ -189,7 +189,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
  * Code for animating the background canvas.
 */
 (function(){
-	const trig = new FTrig(FTrig.LOW);
+	const trig = new FTrig(FTrig.HIGH);
     const baseline = 128;
 
     const c = document.getElementById("canv");
@@ -241,7 +241,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
             countdown -= 1;
         }
         else {
-            countdown = 20;
+            countdown = 30;
             for (let x = 0; x <= 35; x++) {
                 for (let y = 0; y <= 35; y++) {
                   col(x, y, R(x, y, t), G(x, y, t), B(x, y, t));
