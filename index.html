@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HackerClock</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="schedule_data.js"></script>
+    <script defer src="clock_script.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <canvas id="canv" width="36" height="36"></canvas>
+        <div id="top_left_clock"><span id="top_left_clock_span">08:15:00</span></div>
+        <div id="next_block_at"><span>Next block<!-- --> <!-- -->at: <!-- -->loading...</span></div>
+        <div id="main_div">
+            <div id="joke_div" ><span id="joke_span">My cat was just sick
+                    on the carpet, I don’t think it’s feline well.</span></div>
+            <div id="rounded" style="background-color:rgba(13, 9, 10, .55)">
+                <div id="cur_block">loading...</div>
+                <div id="time"><span id="time_span">8:15</span></div>
+                <div id="date">loading...</div>
+                <div id="time_left_title">Time Until<!-- --> <!-- -->Next Block<!-- -->:</div>
+                <div id="time_left">NaNh NaNm NaNs</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
