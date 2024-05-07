@@ -240,13 +240,13 @@ window.setInterval(updateDadJoke, 3*60*1000);
             countdown -= 1;
         }
         else {
-            countdown = 4;
+            countdown = 20;
             for (let x = 0; x <= 35; x++) {
                 for (let y = 0; y <= 35; y++) {
                   col(x, y, R(x, y, t), G(x, y, t), B(x, y, t));
                 }
               }
-              t = t + 0.03;
+              t = t + 0.02;
               if (t > topT) t -= topT;
         }
     window.requestAnimationFrame(run);  
