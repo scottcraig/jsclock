@@ -189,6 +189,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
  * Code for animating the background canvas.
 */
 (function(){
+	const trig = new FTrig(FTrig.LOW);
     const baseline = 128;
 
     const c = document.getElementById("canv");
@@ -208,7 +209,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
             } } })();
     const R = function (x, y, t) {
         // Repeats for t multiples of 2PI
-      return Math.floor(baseline + 64 * Math.cos(preCalR[x][y] + t));
+      return Math.floor(baseline + 64 * trig.cos(preCalR[x][y] + t));
     };
 
     const G = (x, y, t) => {
@@ -216,7 +217,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
       return Math.floor(
         baseline +
           64 *
-            Math.sin((x * x * Math.cos(t / 4) + y * y * Math.sin(t / 3)) / 300)
+            trig.sin((x * x * trig.cos(t / 4) + y * y * trig.sin(t / 3)) / 300)
       );
     };
     const preCalB = [];
@@ -228,12 +229,12 @@ window.setInterval(updateDadJoke, 3*60*1000);
             } } })();
     const B = function (x, y, t) {
         // Repeats for t muliple of 9 * 2PI
-      return Math.floor(baseline + 64 * Math.sin(5 * Math.sin(t / 9) + preCalB[x][y]));
+      return Math.floor(baseline + 64 * trig.sin(5 * trig.sin(t / 9) + preCalB[x][y]));
     };
 
     var t = 0;
     var countdown = 0;
-    const topT = 9 * 4 * 2 * Math.PI; 
+    const topT = 9 * 4 * 2 * trig.PI; 
 
     var run = function () {
         if (countdown > 0){
