@@ -189,7 +189,6 @@ window.setInterval(updateDadJoke, 3*60*1000);
  * Code for animating the background canvas.
 */
 (function(){
-	const trig = new FTrig(FTrig.HIGH);
     const baseline = 128;
 
     const c = document.getElementById("canv");
@@ -205,21 +204,25 @@ window.setInterval(updateDadJoke, 3*60*1000);
         for(let x = 0; x < 36; x++){
             preCalR[x] = [];
             for(let y = 0; y < 36; y++){
-                preCalR[x][y] = (x * x - y * y) / 300;
+                preCalR[x][y] = 1.0 * (x * x - y * y) / 300;
             } } })();
     const R = function (x, y, t) {
         // Repeats for t multiples of 2PI
-      return Math.floor(baseline + 64 * trig.cos(preCalR[x][y] + t));
+      return Math.floor(baseline + 64 * Math.cos(preCalR[x][y] + t));
     };
-
-    const G = (x, y, t) => {
+    
+    const preCalG = [];
+    (function(){
+        for(let i = 0; i < 36; i++){
+            preCalG[i] = 1.0 * i * i / 300;
+        } })();
+    const G = (x, y, cost4, sint3) => {
         // Repeats for t multiple of 12 * 2PI
       return Math.floor(
-        baseline +
-          64 *
-            trig.sin((x * x * trig.cos(t / 4) + y * y * trig.sin(t / 3)) / 300)
+        baseline + 64 * Math.sin(preCalG[x] * cost4 + preCalG[y] * sint3)
       );
     };
+    
     const preCalB = [];
     (function(){
         for(let x = 0; x < 36; x++){
@@ -227,27 +230,31 @@ window.setInterval(updateDadJoke, 3*60*1000);
             for(let y = 0; y < 36; y++){
                 preCalB[x][y] = ((x - 100) * (x - 100) + (y - 100) * (y - 100)) / 1100;
             } } })();
-    const B = function (x, y, t) {
+    const B = function (x, y, sint9) {
         // Repeats for t muliple of 9 * 2PI
-      return Math.floor(baseline + 64 * trig.sin(5 * trig.sin(t / 9) + preCalB[x][y]));
+      return Math.floor(baseline + 64 * Math.sin(5 * sint9 + preCalB[x][y]));
     };
 
     var t = 0;
     var countdown = 0;
-    const topT = 9 * 4 * 2 * trig.PI; 
+    const topT = 9 * 4 * 2 * Math.PI; 
 
     var run = function () {
         if (countdown > 0){
             countdown -= 1;
         }
         else {
-            countdown = 30;
+            countdown = 3;
+            var cost4 = Math.cos(t / 4);
+            var sint3 = Math.sin(t / 3);
+            var sint9 = Math.sin(t / 9);
             for (let x = 0; x <= 35; x++) {
                 for (let y = 0; y <= 35; y++) {
-                  col(x, y, R(x, y, t), G(x, y, t), B(x, y, t));
+                  col(x, y, R(x, y, t), G(x, y, cost4, sint3), B(x, y, sint9));
+                  //col(x, y, 128, 128, B(x, y, sint9));
                 }
               }
-              t = t + 0.02;
+              t = t + 0.05;
               if (t > topT) t -= topT;
         }
     window.requestAnimationFrame(run);  
