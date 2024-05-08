@@ -244,7 +244,7 @@ window.setInterval(updateDadJoke, 3*60*1000);
             countdown -= 1;
         }
         else {
-            countdown = 3;
+            countdown = 10;
             var cost4 = Math.cos(t / 4);
             var sint3 = Math.sin(t / 3);
             var sint9 = Math.sin(t / 9);
