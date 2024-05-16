@@ -75,8 +75,9 @@ function updateClocks(h, m, s){
                 let nextStart = sched[schedIndex + 1].start.split(":");
                 endh = parseInt(nextStart[0]);
                 endm = parseInt(nextStart[1]);
-                document.getElementById("time_left_title").innerHTML = "Time Until Next " + sched[schedIndex + 1].type;
-                document.getElementById("next_block_at").innerHTML = `Next ${sched[schedIndex + 1].type} at ${sched[schedIndex + 1].start}`;
+                let lunchNext = sched[schedIndex + 1].type == "Lunch";
+                document.getElementById("time_left_title").innerHTML = `Time Until ${lunchNext?"":"Next "}${sched[schedIndex + 1].type}`;
+                document.getElementById("next_block_at").innerHTML = `${lunchNext?"":"Next " }${sched[schedIndex + 1].type} at ${sched[schedIndex + 1].start}`;
             }
             let timeLeft = 60 * (endm + 60 * endh) - (s + 60 * (m + 60*h));
 

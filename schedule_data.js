@@ -37,7 +37,7 @@ const scheduleStr = `
                 "colour": "239, 52, 24",
                 "start": "11:40",
                 "end": "12:15",
-                "type": "Break"
+                "type": "Lunch"
             },
             {
                 "text": "Go to C Block Class",
@@ -120,7 +120,7 @@ const scheduleStr = `
                 "colour": "239, 52, 24",
                 "start": "11:40",
                 "end": "12:15",
-                "type": "Break"
+                "type": "Lunch"
             },
             {
                 "text": "Go to C or D Block",
